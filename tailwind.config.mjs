@@ -7,13 +7,28 @@ export default {
         sans: ['"SF Pro Display"', 'Inter Variable', 'system-ui', 'sans-serif'],
       },
       colors: {
+        // Updated apple-gray to a lighter palette for dark backgrounds
         'apple-gray': {
-          50: '#f5f5f7',
-          100: '#e8e8ed',
-          200: '#d2d2d7',
-          300: '#86868b',
-          400: '#6e6e73',
-          500: '#1d1d1f',
+          50: '#eaeaea',
+          100: '#dcdcdc',
+          200: '#c8c8c8',
+          300: '#b4b4b4',
+          400: '#a0a0a0',
+          500: '#8c8c8c',
+        },
+        // Custom dark palette (using dark grey)
+        dark: {
+          DEFAULT: '#1f2937', // This will be our main dark grey background
+          50: '#e0e0e0',
+          100: '#c2c2c2',
+          200: '#a3a3a3',
+          300: '#858585',
+          400: '#666666',
+          500: '#484848',
+          600: '#3a3a3a',
+          700: '#2b2b2b',
+          800: '#1d1d1d',
+          900: '#0e0e0e',
         },
       },
       animation: {

@@ -1,0 +1,64 @@
+---
+interface Hobby {
+  icon: string;
+  name: string;
+  description: string;
+}
+
+const hobbies: Hobby[] = [
+  {
+    icon: "🎸",
+    name: "Playing Ukulele",
+    description:
+      "Enjoy strumming the ukulele and learning new tunes in my free time.",
+  },
+  {
+    icon: "🎧",
+    name: "Listening to Music",
+    description:
+      "Passionate about discovering new artists and diving into different genres.",
+  },
+  {
+    icon: "🥾",
+    name: "Hiking",
+    description: "Love exploring scenic trails and immersing myself in nature.",
+  },
+  {
+    icon: "🏋️‍♂️",
+    name: "Going to the Gym",
+    description:
+      "Committed to regular workouts and staying active with strength training.",
+  },
+  {
+    icon: "🧁",
+    name: "Baking",
+    description:
+      "Enjoy experimenting with recipes and creating delicious baked treats.",
+  },
+  {
+    icon: "🎬",
+    name: "Watching Thriller/True Crime Movies",
+    description:
+      "Fascinated by intense plots and real-life mysteries in films.",
+  },
+];
+---
+
+<div class="bg-dark/80 backdrop-blur-lg rounded-3xl p-6 shadow-xl">
+  <h3 class="text-2xl font-semibold text-gray-300 mb-6">Hobbies & Interests</h3>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {
+      hobbies.map((hobby) => (
+        <div class="bg-dark/50 p-4 rounded-2xl">
+          <div class="flex items-start gap-3">
+            <span class="text-2xl">{hobby.icon}</span>
+            <div>
+              <h4 class="font-medium text-gray-300 mb-1">{hobby.name}</h4>
+              <p class="text-sm text-gray-400">{hobby.description}</p>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>

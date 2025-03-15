@@ -1,29 +1,22 @@
 ---
-import '@fontsource-variable/inter';
-import '@fontsource/source-sans-pro';
-
 interface Props {
   title: string;
-  description?: string;
 }
 
-const { 
-  title, 
-  description = "A modern personal website template for software developers"
-} = Astro.props;
+const { title } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
+    <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="bg-apple-gray-50 text-apple-gray-500">
+  <body class="bg-dark text-white">
     <slot />
   </body>
 </html>
@@ -33,10 +26,11 @@ const {
     --accent: rgb(0, 122, 255);
     --accent-dark: rgb(0, 64, 221);
   }
-  
+
   html {
-    font-family: 'SF Pro Display', 'Inter Variable', system-ui, sans-serif;
+    font-family: "SF Pro Display", "Inter Variable", system-ui, sans-serif;
     scroll-behavior: smooth;
+    background-color: #1f2937; /* Dark grey background */
   }
 
   body {
@@ -44,5 +38,7 @@ const {
     padding: 0;
     min-height: 100vh;
     overscroll-behavior: none;
+    background-color: #1f2937;
+    color: #ffffff;
   }
 </style>

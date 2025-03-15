@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react';
-import * as THREE from 'three';
-import { gsap } from 'gsap';
+import { useEffect, useRef } from "react";
+import * as THREE from "three";
+import { gsap } from "gsap";
 
 const Scene3D = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -19,50 +19,21 @@ const Scene3D = () => {
       0.1,
       1000
     );
-    
-    rendererRef.current = new THREE.WebGLRenderer({ 
+
+    rendererRef.current = new THREE.WebGLRenderer({
       antialias: true,
-      alpha: true 
+      alpha: true,
     });
-    
+
+    // Set background to white instead of dark grey
+    rendererRef.current.setClearColor(0x1f2937, 1);
     rendererRef.current.setSize(window.innerWidth, window.innerHeight);
     containerRef.current.appendChild(rendererRef.current.domElement);
 
-    // Create floating spheres
-    const sphereGeometry = new THREE.SphereGeometry(1, 32, 32);
-    const sphereMaterial = new THREE.MeshPhongMaterial({
-      color: 0x0066ff,
-      transparent: true,
-      opacity: 0.8,
-    });
-
-    const spheres: THREE.Mesh[] = [];
-    for (let i = 0; i < 5; i++) {
-      const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-      sphere.position.set(
-        Math.random() * 10 - 5,
-        Math.random() * 10 - 5,
-        Math.random() * 10 - 15
-      );
-      sphere.scale.setScalar(Math.random() * 0.5 + 0.5);
-      sceneRef.current.add(sphere);
-      spheres.push(sphere);
-
-      // Animate each sphere
-      gsap.to(sphere.position, {
-        y: `+=${Math.random() * 2 - 1}`,
-        duration: 2 + Math.random() * 2,
-        yoyo: true,
-        repeat: -1,
-        ease: "sine.inOut",
-      });
-    }
-
-    // Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    const ambientLight = new THREE.AmbientLight(0x444444, 0.5); // Slightly brighter ambient light
     sceneRef.current.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    const directionalLight = new THREE.DirectionalLight(0x4444ff, 0.8);
     directionalLight.position.set(5, 5, 5);
     sceneRef.current.add(directionalLight);
 
@@ -71,13 +42,8 @@ const Scene3D = () => {
     // Animation loop
     const animate = () => {
       requestAnimationFrame(animate);
-      
+
       if (sceneRef.current && cameraRef.current && rendererRef.current) {
-        spheres.forEach((sphere) => {
-          sphere.rotation.x += 0.005;
-          sphere.rotation.y += 0.005;
-        });
-        
         rendererRef.current.render(sceneRef.current, cameraRef.current);
       }
     };
@@ -93,11 +59,10 @@ const Scene3D = () => {
       }
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
-    // Cleanup
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
       if (containerRef.current && rendererRef.current) {
         containerRef.current.removeChild(rendererRef.current.domElement);
       }
